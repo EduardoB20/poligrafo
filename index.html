@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polígrafo</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@fontsource/cooper-hewitt@5.3.0/700.css" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #2f2f34;
+        }
+
+        .Titulo {
+            background-color: #77777d;
+            height: 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-left: 10px;
+            padding-right: 10px;
+            position: relative;
+        }
+
+        .Titulo_Texto {
+            color: white;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 34px;
+            font-weight: normal;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .Logo_Governo {
+            width: 150px;
+            height: 80px;
+            object-fit: contain;
+        }
+
+        .Logo_Policia {
+            width: 60px;
+            height: 50px;
+            object-fit: contain;
+        }
+
+        .Conteudo {
+            display: flex;
+            align-items: flex-start;
+            gap: 22px;
+            margin-top: 35px;
+
+            margin-right: 4px;
+            margin-bottom: 20px;
+        }
+
+        .Questionario {
+            width: 58%;
+        }
+
+        .Questionario_Title {
+            color: white;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 28px;
+            margin-left: 10px;
+            font-weight: normal;
+            margin-bottom: 8px;
+        }
+
+        .Questionario_Main {
+            background-color: #7a7a80;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+
+
+        }
+
+        .Pergunta {
+            display: flex;
+            height: 35px;
+            margin-bottom: 12px;
+        }
+
+        .Pergunta_Numero {
+            background-color: #ff2020;
+            color: white;
+            width: 32px;
+            flex-shrink: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Anton', sans-serif;
+            font-size: 21px;
+        }
+
+        .Pergunta_Texto {
+            background-color: #eeeeee;
+            color: black;
+            display: flex;
+            align-items: center;
+            padding-left: 12px;
+            flex: 1;
+            min-width: 0px;
+            font-family: 'Cooper Hewitt', Arial, sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .Pergunta_Respostas {
+            width: 120px;
+            flex-shrink: 0;
+            display: flex;
+            gap: 1px;
+            background-color: black;
+        }
+
+        .Pergunta_Respostas button {
+            background-color: #3f4348;
+            color: white;
+            width: 50%;
+            font-weight: 100;
+            border: none;
+            font-family: 'Anton', sans-serif;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .Botao_Enviar {
+            background-color: #ff2020;
+            color: white;
+            border: none;
+            width: 150px;
+            height: 37px;
+            display: block;
+            margin-top: 2px;
+            margin-left: 740px;
+            margin-right: 10px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 23px;
+            cursor: pointer;
+        }
+
+        .Botao_Enviar {
+            background-color: #ff2020;
+            transition: background-color 0.3s ease;
+        }
+
+        .Botao_Enviar:hover {
+            background-color: #f13f3f;
+        }
+
+        .Resultado {
+            flex: 1;
+            min-width: 0px;
+        }
+
+        .Resultado_Title {
+            color: white;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 28px;
+            font-weight: normal;
+            margin-bottom: 8px;
+        }
+
+        .Resultado_Linha {
+            display: flex;
+            height: 46px;
+        }
+
+        .Resultado_Nome {
+            background-color: #ff2020;
+            color: white;
+            width: 40%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 20px;
+        }
+
+        .Resultado_Valor {
+            background-color: #eeeeee;
+            color: black;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            padding-left: 18px;
+            font-family: 'Cooper Hewitt', Arial, sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .Resultado_Espaco {
+            height: 18px;
+        }
+
+        .Parecer_Title {
+            color: white;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 28px;
+            font-weight: normal;
+            margin-top: 18px;
+            margin-bottom: 8px;
+        }
+
+        .Parecer_Main {
+            background-color: #7a7a80;
+
+        }
+
+        .Parecer_Linha {
+            display: flex;
+            border: 1px solid;
+            height: 38px;
+
+        }
+
+        .Parecer_Numero {
+            background-color: #eeeeee;
+            color: black;
+            width: 40%;
+            border-style: solid;
+            border-width: 0 1px 0 0;
+            display: flex;
+
+            align-items: center;
+            padding-left: 14px;
+            font-family: 'Cooper Hewitt', Arial, sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .Parecer_Texto {
+            background-color: #eeeeee;
+            color: black;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            padding-left: 14px;
+            font-family: 'Cooper Hewitt', Arial, sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .Parecer_Linha:last-child {
+            margin-bottom: 0px;
+        }
+
+        .Pergunta_Respostas button.respostaSim {
+            background-color: #00bf63;
+        }
+
+        .Pergunta_Respostas button.respostaNao {
+            background-color: #ff0e18;
+        }
+
+        .Pergunta_Respostas button.respostaNeutro {
+            background-color: #3f4348;
+        }
+
+        @media (max-width: 1100px) {
+            .Conteudo {
+                flex-direction: column;
+            }
+
+            .Questionario {
+                width: 100%;
+            }
+
+            .Resultado {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .Titulo_Texto {
+                font-size: 26px;
+            }
+
+            .Logo_Governo {
+                width: 70px;
+            }
+
+            .Logo_Policia {
+                width: 45px;
+            }
+
+            .Pergunta {
+                min-height: 35px;
+                height: auto;
+            }
+
+            .Pergunta_Texto {
+                font-size: 11px;
+                padding-left: 8px;
+                padding-top: 6px;
+                padding-bottom: 6px;
+            }
+
+            .Pergunta_Numero {
+                width: 30px;
+            }
+
+            .Pergunta_Respostas {
+                width: 70px;
+            }
+
+            .Resultado_Nome {
+                font-size: 17px;
+            }
+
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="Titulo">
+        <img class="Logo_Governo" src="assets/governo-sp.png">
+        <h1 class="Titulo_Texto">POLÍGRAFO</h1>
+        <img class="Logo_Policia" src="assets/policia-militar.png">
+    </div>
+
+    <div class="Conteudo">
+
+        <div class="Questionario">
+            <h2 class="Questionario_Title">QUESTIONÁRIO</h2>
+            <div class="Questionario_Main">
+
+                <div class="Pergunta">
+                    <div class="Pergunta_Numero">1</div>
+                    <div class="Pergunta_Texto">VOCÊ CONHECE A VÍTIMA?</div>
+                    <div class="Pergunta_Respostas">
+                        <button id="botaoSim1" class="Respostas_Sim1" type="button">SIM</button>
+                        <button id="botaoNao1" class="Respostas_Nao1" type="button">NÃO</button>
+                    </div>
+                </div>
+
+                <div class="Pergunta">
+                    <div class="Pergunta_Numero">2</div>
+                    <div class="Pergunta_Texto">VOCÊ ESTAVA COM A VÍTIMA?</div>
+                    <div class="Pergunta_Respostas">
+                        <button id="botaoSim2" class="Respostas_Sim2" type="button">SIM</button>
+                        <button id="botaoNao2" class="Respostas_Nao2" type="button">NÃO</button>
+                    </div>
+                </div>
+
+                <div class="Pergunta">
+                    <div class="Pergunta_Numero">3</div>
+                    <div class="Pergunta_Texto">VOCÊ TINHA ALGO CONTRA A VÍTIMA?</div>
+                    <div class="Pergunta_Respostas">
+                        <button id="botaoSim3" class="Respostas_Sim3" type="button">SIM</button>
+                        <button id="botaoNao3" class="Respostas_Nao3" type="button">NÃO</button>
+                    </div>
+                </div>
+
+                <div class="Pergunta">
+                    <div class="Pergunta_Numero">4</div>
+                    <div class="Pergunta_Texto">VOCÊ PRESENCIOU O CRIME?</div>
+                    <div class="Pergunta_Respostas">
+                        <button id="botaoSim4" class="Respostas_Sim4" type="button">SIM</button>
+                        <button id="botaoNao4" class="Respostas_Nao4" type="button">NÃO</button>
+                    </div>
+                </div>
+
+                <div class="Pergunta">
+                    <div class="Pergunta_Numero">5</div>
+                    <div class="Pergunta_Texto">VOCÊ JÁ COMETEU ALGUM CRIME?</div>
+                    <div class="Pergunta_Respostas">
+                        <button id="botaoSim5" class="Respostas_Sim5" type="button">SIM</button>
+                        <button id="botaoNao5" class="Respostas_Nao5" type="button">NÃO</button>
+                    </div>
+                </div>
+
+                <div class="Pergunta">
+                    <div class="Pergunta_Numero">6</div>
+                    <div class="Pergunta_Texto">VOCÊ TINHA ALGUMA DÍVIDA COM A VÍTIMA?</div>
+                    <div class="Pergunta_Respostas">
+                        <button id="botaoSim6" class="Respostas_Sim6" type="button">SIM</button>
+                        <button id="botaoNao6" class="Respostas_Nao6" type="button">NÃO</button>
+                    </div>
+                </div>
+
+                <div class="Pergunta">
+                    <div class="Pergunta_Numero">7</div>
+                    <div class="Pergunta_Texto">ALGUÉM PODE CONFIRMAR ONDE VOCÊ ESTAVA NA HORA DO CRIME?</div>
+                    <div class="Pergunta_Respostas">
+                        <button id="botaoSim7" class="Respostas_Sim7" type="button">SIM</button>
+                        <button id="botaoNao7" class="Respostas_Nao7" type="button">NÃO</button>
+                    </div>
+                </div>
+
+                <div class="Pergunta">
+                    <div class="Pergunta_Numero">8</div>
+                    <div class="Pergunta_Texto">VOCÊ JÁ FOI INVESTIGADO PELA POLÍCIA?</div>
+                    <div class="Pergunta_Respostas">
+                        <button id="botaoSim8" class="Respostas_Sim8" type="button">SIM</button>
+                        <button id="botaoNao8" class="Respostas_Nao8" type="button">NÃO</button>
+                    </div>
+                </div>
+
+                <div class="Pergunta">
+                    <div class="Pergunta_Numero">9</div>
+                    <div class="Pergunta_Texto">VOCÊ JÁ FOI TESTEMUNHA DE OUTRO CRIME?</div>
+                    <div class="Pergunta_Respostas">
+                        <button id="botaoSim9" class="Respostas_Sim9" type="button">SIM</button>
+                        <button id="botaoNao9" class="Respostas_Nao9" type="button">NÃO</button>
+                    </div>
+                </div>
+
+                <div class="Pergunta">
+                    <div class="Pergunta_Numero">10</div>
+                    <div class="Pergunta_Texto">VOCÊ COSTUMA CARREGAR ALGUM OBJETO PARA DEFESA PESSOAL?</div>
+                    <div class="Pergunta_Respostas">
+                        <button id="botaoSim10" class="Respostas_Sim10" type="button">SIM</button>
+                        <button id="botaoNao10" class="Respostas_Nao10" type="button">NÃO</button>
+                    </div>
+                </div>
+
+
+
+            </div>
+            <button id="botaoEnviar" class="Botao_Enviar" type="button" onclick="enviar()">ENVIAR</button>
+        </div>
+
+        <div class="Resultado">
+            <h2 class="Resultado_Title">RESULTADO</h2>
+
+            <div class="Resultado_Linha">
+                <div class="Resultado_Nome">RESPOSTAS “SIM”:</div>
+                <div class="Resultado_Valor" id="ResultadoNumero">6</div>
+            </div>
+
+            <div class="Resultado_Espaco"></div>
+
+            <div class="Resultado_Linha">
+                <div class="Resultado_Nome">CLASSIFICAÇÃO</div>
+                <div class="Resultado_Valor" id="classificacao">ENVIE PARA CLASSIFICAR</div>
+            </div>
+
+            <div class="Resultado_Espaco"></div>
+
+
+            <div class="Resultado_Linha">
+                <div class="Resultado_Valor" id="mensagemFinal">CULPADO</div>
+            </div>
+
+            <h2 class="Parecer_Title">PARECER</h2>
+
+            <div class="Parecer_Main">
+                <div class="Parecer_Linha">
+                    <div class="Parecer_Numero">Menos de 5</div>
+                    <div class="Parecer_Texto">Inocente</div>
+                </div>
+                <div class="Parecer_Linha">
+                    <div class="Parecer_Numero">5</div>
+                    <div class="Parecer_Texto">Suspeita</div>
+                </div>
+                <div class="Parecer_Linha">
+                    <div class="Parecer_Numero">6 a 8</div>
+                    <div class="Parecer_Texto">Cúmplice</div>
+                </div>
+                <div class="Parecer_Linha">
+                    <div class="Parecer_Numero">9 ou 10</div>
+                    <div class="Parecer_Texto">Culpada</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+<script>
+    let Sim = document.querySelectorAll(".Resposta_Sim").length;
+    let Nao = 0
+    function clicar_botao() {
+        for (let i = 1; i <= 10; i++) {
+
+            document.getElementById("botaoSim" + i).addEventListener("click", function () {
+                document.getElementById("botaoSim" + i).className = "respostaSim";
+                document.getElementById("botaoNao" + i).className = "respostaNeutro";
+            });
+
+            document.getElementById("botaoNao" + i).addEventListener("click", function () {
+                document.getElementById("botaoNao" + i).className = "respostaNao";
+                document.getElementById("botaoSim" + i).className = "respostaNeutro";
+            });
+        }
+    }
+    function enviar() {
+        let Sim = document.querySelectorAll(".respostaSim").length;
+        let Nao = document.querySelectorAll(".respostaNao").length;
+
+        document.getElementById("ResultadoNumero").textContent = Sim;
+        if (Sim < 5) {
+            document.getElementById("classificacao").textContent = "Inocente";
+            document.getElementById("mensagemFinal").textContent = "As evidências apresentadas não indicam envolvimento significativo na ocorrência.";
+        }
+        else if (Sim == 5) {
+            document.getElementById("classificacao").textContent = "Suspeita";
+            document.getElementById("mensagemFinal").textContent = "Foram encontrados indícios que justificam investigação adicional.";
+        }
+        else if (Sim >= 6 && Sim <= 8) {
+            document.getElementById("classificacao").textContent = "Cúmplice";
+            document.getElementById("mensagemFinal").textContent = "A quantidade de evidências sugere possível participação indireta no crime.";
+        }
+        else if (Sim >= 9 && Sim <= 10) {
+            document.getElementById("classificacao").textContent = "Culpada";
+            document.getElementById("mensagemFinal").textContent = "O nível de envolvimento indicado pelas respostas é extremamente alto.";
+        }
+    }
+    clicar_botao()
+
+
+</script>
+
+</html>
